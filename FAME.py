@@ -27,7 +27,6 @@ class FairnessAwareMEssages(MessagePassing):
         
         group_difference = self.sensitive_attr[row] - self.sensitive_attr[col]
         
-        # Adjust messages based on statistical parity
         fairness_adjustment = (1 + self.bias_correction * group_difference.view(-1, 1))
 
         return fairness_adjustment * norm.view(-1, 1) * x_j
